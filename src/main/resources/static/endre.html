@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Endre</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="Endre.js"></script>
+    <script src="validering.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Endre Bil</h1>
+            <div id="feil" style="color: red"></div>
+            <form class="form">
+                <input type="hidden" id="id"/>
+                <div class="form-group">
+                    <label for="personnr">Personnr</label>
+                    <input type="text" class="form-control" id="personnr" onchange="validerPersonnr(this.value)"/>
+                    <span id="feilPersonnr" style=" color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="navn">Navn</label>
+                    <input type="text" class="form-control" id="navn" onchange="validerNavn(this.value)"/>
+                    <span id="feilNavn" style=" color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" onchange="validerAdresse(this.value)"/>
+                    <span id="feilAdresse" style=" color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="kjennetegn">Kjennetegn</label>
+                    <input type="text" class="form-control" id="kjennetegn" onchange="validerKjennetegn(this.value)"/>
+                    <span id="feilKjennetegn" style=" color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="merke">Merke</label>
+                    <div id="merke" class="dropdown">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <div id="type" class="dropdown">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" value="Endre" class="btn btn-primary" onclick="endre()">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Registrer Bruker</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form">
+                <div class="form-group">
+                    <label for="brukernavn">Brukernavn</label>
+                    <input type="text" class="form-control" id="brukernavn" onchange="validerPersonnr(this.value)"/>
+                    <span id="feilBrukernavn" style=" color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="passord">Passord</label>
+                    <input type="text" class="form-control" id="passord" onchange="validerNavn(this.value)"/>
+                    <span id="feilPassord" style=" color: red"></span>
+                </div>
+                <button class="btn btn-primary" onclick="registrer()">Registrer</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>
