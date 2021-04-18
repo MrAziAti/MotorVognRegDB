@@ -54,6 +54,13 @@ public class MotorvognController {
 
 
     }
+    @PostMapping("/lagreBruker")
+    public void lagreBruker(Bruker bruker, HttpServletResponse response)throws IOException{
+        if(!rep.lagreBruker(bruker)){
+           response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB, Prøv igjen senere");
+        }
+
+    }
 
     @GetMapping("/hentBiler")
     public List<Biler> hentBiler(HttpServletResponse response) throws IOException {

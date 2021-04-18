@@ -5,6 +5,8 @@
     <title>Registrer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="registrerBruker.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -15,15 +17,15 @@
             <form class="form">
                 <div class="form-group">
                     <label for="brukernavn">Brukernavn</label>
-                    <input type="text" class="form-control" id="brukernavn" onchange="validerPersonnr(this.value)"/>
+                    <input type="text" class="form-control" id="brukernavn" />
                     <span id="feilBrukernavn" style=" color: red"></span>
                 </div>
                 <div class="form-group">
                     <label for="passord">Passord</label>
-                    <input type="text" class="form-control" id="passord" onchange="validerNavn(this.value)"/>
+                    <input type="text" class="form-control" id="passord"/>
                     <span id="feilPassord" style=" color: red"></span>
                 </div>
-                <button class="btn btn-primary" onclick="registrer()">Registrer</button>
+                <button class="btn btn-primary" onclick="regBruker()">Registrer</button>
             </form>
         </div>
 

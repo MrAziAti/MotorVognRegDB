@@ -14,3 +14,10 @@ CREATE TABLE Biler(
     merke VARCHAR (255) NOT NULL,
     type VARCHAR (255) NOT NULL
 );
+
+CREATE TABLE Bruker (
+    id INTEGER AUTO_INCREMENT NOT NULL,
+    brukernavn varchar(255) NOT NULL,
+    passord VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);

@@ -31,6 +31,17 @@ public class MotorvognRepository {
 
 
     }
+    public boolean lagreBruker(Bruker bruker){
+        String sql = "INSERT INTO Bruker (brukernavn, passord) VALUES (?,?)";
+
+        try{
+            db.update(sql, bruker.getBrukernavn(),bruker.getPassord());
+            return true;
+        }catch (Exception e){
+            logger.error("feil i lagre bruker");
+            return false;
+        }
+    }
     public List<Biler> hentBiler(){
         String sql = "SELECT * FROM Biler;";
         try{

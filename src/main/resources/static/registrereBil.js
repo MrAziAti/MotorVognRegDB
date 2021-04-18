@@ -70,10 +70,5 @@ function regMotorvogn() {
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
         })
-    $("#personnr").val("");
-    $("#navn").val("");
-    $("#adresse").val("");
-    $("#kjennetegn").val("");
-    $("#valgtMerke").val("");
-    $("#valgtType").val("");
+
 }
