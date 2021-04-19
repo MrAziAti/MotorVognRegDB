@@ -14,14 +14,16 @@ function hentAlle() {
 }
 
 function formaterData(biler) {
-    let ut = "<table class='table table-striped'>" + "<h1>Registrerte biler</h1>" +
+    let ut = "<table class='table table-striped'>" + "<h3>Registrerte biler</h3>" +
         "<tr>" +
         "<th>Personnr</th><th>Navn</th><th>Adresse</th>" +
         "<th>Kjennetegn</th><th>Merke</th><th>Type</th>" +
         "</tr>";
+    let count = 0;
     for (let bil of biler) {
         let link = "endre.html?id=" + bil.id;
         console.log(link);
+
         ut += "<tr>" +
             "<td>" + bil.personnr + "</td>" +
             "<td>" + bil.navn + "</td>" +
@@ -32,9 +34,15 @@ function formaterData(biler) {
             /*`<td> <a class='btn btn-primary' href="${link}">Endre</a></td>` +
             "<td> <button class='btn btn-danger' onclick='slettEnKunde(" + bil.id + ")'>Slett</button></td>" +*/
             "</tr>";
+        count++;
     }
     ut += "</table>";
-    $("#bilene").html(ut);
+
+    if (count == 0) {
+        $("#bilene").html("Ingen biler i registeret");
+    } else {
+        $("#bilene").html(ut);
+    }
 }
 
 function slettEnKunde(id) {

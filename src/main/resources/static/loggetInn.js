@@ -4,7 +4,7 @@ $(function () {
 
 
 function hentAlle() {
-    $.get("/hentAlle", function (biler) {
+    $.get("/hentAlleLoggetInn", function (biler) {
         formaterData(biler);
     })
         .fail(function (jqXHR) {

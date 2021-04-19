@@ -92,6 +92,20 @@ public class MotorvognController {
         }
         return alleBiler;
     }
+    @GetMapping("/hentAlleLoggetInn")
+    public List<Motorvogn> hentAlleLoggetInn(HttpServletResponse response) throws IOException {
+        List<Motorvogn> alleVogner = new ArrayList<>();
+        if(session.getAttribute("Innlogget")!=null){
+            alleVogner = rep.hentAlle();
+            if (alleVogner == null) {
+                response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i DB, Prøv igjen senere");
+            }
+            return alleVogner;
+        }
+        response.sendError(HttpStatus.NOT_FOUND.value());
+
+        return null;
+    }
 
     @GetMapping("/hentAlle")
     public List<Motorvogn> hentAlle(HttpServletResponse response) throws IOException {
