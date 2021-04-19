@@ -4,3 +4,5 @@ INSERT INTO Biler (merke, type) VALUES ('Volvo','V91');
 INSERT INTO Biler (merke, type) VALUES ('Audi','A8');
 INSERT INTO Biler (merke, type) VALUES ('Audi','Q7');
 INSERT INTO Biler (merke, type) VALUES ('Audi','Q8');
+
+INSERT INTO Bruker(brukernavn, passord)VALUES('Atif','AtifAtif8');

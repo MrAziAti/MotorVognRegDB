@@ -1,4 +1,17 @@
+function validerOgLogInn(){
+    const okBrukernavn = validerBrukernavn($("#brukernavn").val());
+    const okPassord = validerBrukernavn($("#passord").val());
 
+    if(okBrukernavn && okPassord){
+        login();
+    }
+}
+function logout(){
+    const url = "/logout";
+    $.get(url, function (){
+        window.location.href = "index.html";
+    })
+}
 
 function login(){
     const bruker = {
@@ -8,9 +21,9 @@ function login(){
     };
 
     const url = "/login";
-    $.get(url, function (inlogget){
+    $.get(url, bruker, function (inlogget){
         if(inlogget){
-            //send til alle der man kan registrere.
+            window.location.href = "loggetInn.html";
         }
         else{
             S("#feil").html("Feil brukernavn eller passord");

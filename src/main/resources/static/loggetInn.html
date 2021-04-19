@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <script src="index.js"></script>
-    <title>Hoved siden</title>
+    <script src="loggetInn.js"></script>
+    <title>Innlogget</title>
+
 
 </head>
 <body>
@@ -14,13 +15,15 @@
     <br><br>
     <div class="row">
         <div class="col-md-12">
+            <h3>Alle bilene:</h3>
             <div id="bilene" class="table-responsive"></div>
             <button class="btn btn-primary" onclick="hentAlle()">Hent Alle biler</button>
-            <!--<button class="btn btn-danger" onclick="slettAlle()">Slett alle biler</button>-->
-            <a class="btn btn-primary" href="login.html">Log inn</a>
+            <button class="btn btn-danger" onclick="slettAlle()">Slett alle biler</button>
+            <!--<a class="btn btn-primary" href="login.html">Log inn</a>-->
             <!--<a class="btn btn-primary" href="login.html">Log ut</a>-->
-            <!--<a class="btn btn-primary" href="registrerbil.html">Registrer ny bil</a>
-            <a class="btn btn-primary" href="registrerBruker.html">Registrer ny bruker</a>-->
+            <button class="btn btn-danger" onclick="logout()">Log ut</button>
+            <a class="btn btn-primary" href="registrerbil.html">Registrer ny bil</a>
+            <a class="btn btn-primary" href="registrerBruker.html">Registrer ny bruker</a>
 
         </div>
 

@@ -87,7 +87,7 @@ function endre() {
     };
 
     $.post("/endreEn", biler, function () {
-        window.location.href = "index.html";
+        window.location.href = "loggetInn.html";
     })
         .fail(function (jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);

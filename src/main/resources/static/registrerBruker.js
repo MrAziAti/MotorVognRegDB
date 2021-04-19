@@ -15,12 +15,13 @@ function regBruker() {
         passord: $("#passord").val()
     };
 
-    $.post("/lagreBruker", bruker, function () {
-        window.location.href = "registrerBruker.html";
-        console.log("I post metoden");
+    const url = "/lagreBruker";
+    $.post(url, bruker, function () {
+        window.location.href = "loggetInn.html";
+
     })
         .fail(function (jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
-        });
+        })
 }

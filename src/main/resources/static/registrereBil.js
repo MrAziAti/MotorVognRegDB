@@ -64,7 +64,7 @@ function regMotorvogn() {
     };
     $.post("/lagre", motorvogn, function () {
         //hentAlle();
-        window.location.href = "index.html";
+        window.location.href = "loggetInn.html";
     })
         .fail(function (jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);

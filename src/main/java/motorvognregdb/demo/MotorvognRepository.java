@@ -113,4 +113,20 @@ public class MotorvognRepository {
             return false;
         }
     }
+
+    public boolean sjekkBrukerOgPassord(Bruker bruker){
+        Object[] param = new Object[]{bruker.getBrukernavn(), bruker.getPassord()};
+        String sql = "SELECT COUNT(*) FROM Bruker WHERE brukernavn=? AND passord=?";
+        try{
+            int antall = db.queryForObject(sql,param,Integer.class);
+            if(antall >0){
+                return true;
+            }
+            return false;
+
+        }catch(Exception e){
+            logger.error("Feill i sjekk brukernavn og passord" + e);
+            return false;
+        }
+    }
 }

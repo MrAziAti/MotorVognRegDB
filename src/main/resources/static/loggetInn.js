@@ -1,5 +1,5 @@
 $(function () {
-    //hentAlle();
+    hentAlle();
 });
 
 
@@ -14,10 +14,10 @@ function hentAlle() {
 }
 
 function formaterData(biler) {
-    let ut = "<table class='table table-striped'>" + "<h1>Registrerte biler</h1>" +
+    let ut = "<table class='table table-striped'>" +
         "<tr>" +
         "<th>Personnr</th><th>Navn</th><th>Adresse</th>" +
-        "<th>Kjennetegn</th><th>Merke</th><th>Type</th>" +
+        "<th>Kjennetegn</th><th>Merke</th><th>Type</th><th>Endre</th><th>Slette</th>" +
         "</tr>";
     for (let bil of biler) {
         let link = "endre.html?id=" + bil.id;
@@ -29,8 +29,8 @@ function formaterData(biler) {
             "<td>" + bil.kjennetegn + "</td>" +
             "<td>" + bil.merke + "</td>" +
             "<td>" + bil.type + "</td>" +
-            /*`<td> <a class='btn btn-primary' href="${link}">Endre</a></td>` +
-            "<td> <button class='btn btn-danger' onclick='slettEnKunde(" + bil.id + ")'>Slett</button></td>" +*/
+            `<td> <a class='btn btn-primary' href="${link}">Endre</a></td>` +
+            "<td> <button class='btn btn-danger' onclick='slettEnKunde(" + bil.id + ")'>Slett</button></td>" +
             "</tr>";
     }
     ut += "</table>";
@@ -58,4 +58,10 @@ function slettAlle() {
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
         });
+}
+function logout(){
+    const url = "/logout";
+    $.get(url, function (){
+        window.location.href = "index.html";
+    })
 }

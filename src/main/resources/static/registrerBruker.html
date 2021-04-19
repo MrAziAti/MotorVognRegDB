@@ -5,17 +5,18 @@
     <title>Registrer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <script src="registrerBruker.js"></script>
+
     <script src="validering.js"></script>
 
 </head>
 <body>
 <div class="container">
     <h1>Registrer Bruker</h1>
+    <div id="feil" style="color: red"></div>
     <br><br>
     <div class="row">
         <div class="col-md-4">
-            <div id="feil" style="color: red"></div>
+
             <form class="form">
                 <div class="form-group">
                     <label for="brukernavn">Brukernavn</label>
@@ -27,12 +28,11 @@
                     <input type="text" class="form-control" id="passord" onchange="validerPassord(this.value)"/>
                     <span id="feilPassord" style=" color: red"></span>
                 </div>
-                <button class="btn btn-primary" onclick="validerOgRegistrer()">Registrer</button>
             </form>
+            <button class="btn btn-primary" onclick="validerOgRegistrer()">Registrer</button>
         </div>
-
-
     </div>
 </div>
+<script src="registrerBruker.js"></script>
 </body>
 </html>

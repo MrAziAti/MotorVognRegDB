@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,5 +133,20 @@ public class MotorvognController {
         if (!rep.endreBil(vogn)) {
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i DB, Prøv igjen senere");
         }
+    }
+    @Autowired private HttpSession session;
+
+    @GetMapping("/login")
+    public boolean login(Bruker bruker){
+        if(rep.sjekkBrukerOgPassord(bruker)){
+            session.setAttribute("Innlogget", bruker);
+            return true;
+        }
+        return false;
+    }
+
+    @GetMapping("/logout")
+    public void logout(){
+        session.removeAttribute("Innlogget");
     }
 }
