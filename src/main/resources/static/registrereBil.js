@@ -31,8 +31,9 @@ function formaterBiler(biler) {
 
 function finnTyper() {
     const valgtMerke = $("#valgtMerke").val();
-    let ut = "<select id='valgtType'>";
-    ut += "<option>--Velg Type--</option>"
+    $("#feilMerke").html("");
+    let ut = "<select id='valgtType'> ";
+    ut += "<option>Velg Type</option>"
     for (const bil of cars) {
         if (bil.merke === valgtMerke) {
             ut += "<option>" + bil.type + "</option>";

@@ -17,8 +17,8 @@ function hentAlleBiler() {
 
 function formaterBiler(biler) {
     let merkeliste = [];
-    let ut = "<select id='valgtMerke' onchange='finnTyper()'>";
-    ut += "<option>--Velg merke--</option>";
+    let ut = "<select id='valgtMerke' onchange='finnTyper()' >";
+    ut += "<option>Velg merke</option>";
     for (const bil of biler) {
         if (!merkeliste.includes(bil.merke)) {
             ut += "<option>" + bil.merke + "</option>";
@@ -31,8 +31,8 @@ function formaterBiler(biler) {
 
 function finnTyper() {
     const valgtMerke = $("#valgtMerke").val();
-    let ut = "<select id='valgtType'>";
-    ut += "<option>--Velg Type--</option>"
+    let ut = "<select id='valgtType' >";
+    ut += "<option>Velg Type</option>"
     for (const bil of cars) {
         if (bil.merke === valgtMerke) {
             ut += "<option>" + bil.type + "</option>";

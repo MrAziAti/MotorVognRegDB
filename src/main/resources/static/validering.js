@@ -75,3 +75,15 @@ function validerPassord(passord) {
         return true;
     }
 }
+
+function validerMerke(){
+    const merke = ("#valgtMerke").val();
+
+    if(merke === "Velg merke"){
+        $("#feilMerke").html("Velg et merke");
+        return false;
+    }else{
+        $("#feilMerke").html("");
+        return true;
+    }
+}

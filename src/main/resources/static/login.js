@@ -26,11 +26,11 @@ function login(){
             window.location.href = "loggetInn.html";
         }
         else{
-            S("#feil").html("Feil brukernavn eller passord");
+            $("#feil").html("Feil brukernavn eller passord");
         }
     })
         .fail(function (jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
-        })
+        });
 }

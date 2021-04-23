@@ -31,8 +31,6 @@ function formaterData(biler) {
             "<td>" + bil.kjennetegn + "</td>" +
             "<td>" + bil.merke + "</td>" +
             "<td>" + bil.type + "</td>" +
-            /*`<td> <a class='btn btn-primary' href="${link}">Endre</a></td>` +
-            "<td> <button class='btn btn-danger' onclick='slettEnKunde(" + bil.id + ")'>Slett</button></td>" +*/
             "</tr>";
         count++;
     }
@@ -43,27 +41,4 @@ function formaterData(biler) {
     } else {
         $("#bilene").html(ut);
     }
-}
-
-function slettEnKunde(id) {
-    const url = "/slettEn?id=" + id;
-    $.get(url, function () {
-        //window.location.href = "registrerbil.html";
-        hentAlle();
-    })
-        .fail(function (jqXHR) {
-            const json = $.parseJSON(jqXHR.responseText);
-            $("#feil").html(json.message);
-        });
-}
-
-function slettAlle() {
-    $.get("/slettAlle", function () {
-        //window.location.href = "registrerbil.html";
-        hentAlle();
-    })
-        .fail(function (jqXHR) {
-            const json = $.parseJSON(jqXHR.responseText);
-            $("#feil").html(json.message);
-        });
 }

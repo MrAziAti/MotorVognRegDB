@@ -92,19 +92,21 @@ public class MotorvognController {
         }
         return alleBiler;
     }
+
     @GetMapping("/hentAlleLoggetInn")
     public List<Motorvogn> hentAlleLoggetInn(HttpServletResponse response) throws IOException {
         List<Motorvogn> alleVogner = new ArrayList<>();
-        if(session.getAttribute("Innlogget")!=null){
+        if (session.getAttribute("Innlogget") != null) {
             alleVogner = rep.hentAlle();
             if (alleVogner == null) {
                 response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i DB, Prøv igjen senere");
             }
             return alleVogner;
-        }
-        response.sendError(HttpStatus.NOT_FOUND.value());
+        }else {
+            response.sendError(HttpStatus.NOT_FOUND.value(),"Må være logget inn for å vise register");
 
-        return null;
+            return null;
+        }
     }
 
     @GetMapping("/hentAlle")
@@ -143,16 +145,21 @@ public class MotorvognController {
 
     @PostMapping("/endreEn")
     public void endreEn(Motorvogn vogn, HttpServletResponse response) throws IOException {
-
-        if (!rep.endreBil(vogn)) {
-            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i DB, Prøv igjen senere");
+        if (validerVogn(vogn)) {
+            if (!rep.endreBil(vogn)) {
+                response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i DB, Prøv igjen senere");
+            }
+        } else {
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil i validering - prøv igjen senere");  
         }
     }
-    @Autowired private HttpSession session;
+
+    @Autowired
+    private HttpSession session;
 
     @GetMapping("/login")
-    public boolean login(Bruker bruker){
-        if(rep.sjekkBrukerOgPassord(bruker)){
+    public boolean login(Bruker bruker) {
+        if (rep.sjekkBrukerOgPassord(bruker)) {
             session.setAttribute("Innlogget", bruker);
             return true;
         }
@@ -160,7 +167,7 @@ public class MotorvognController {
     }
 
     @GetMapping("/logout")
-    public void logout(){
+    public void logout() {
         session.removeAttribute("Innlogget");
     }
 }

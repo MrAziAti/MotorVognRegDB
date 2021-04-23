@@ -38,7 +38,7 @@ public class MotorvognRepository {
             db.update(sql, bruker.getBrukernavn(),bruker.getPassord());
             return true;
         }catch (Exception e){
-            logger.error("feil i lagre bruker");
+            logger.error("feil i lagre bruker" +e);
             return false;
         }
     }
@@ -83,7 +83,7 @@ public class MotorvognRepository {
             db.update(sql,id);
             return true;
         }catch (Exception e){
-            logger.error("Feil i slett en bil");
+            logger.error("Feil i slett en bil" + e);
             return false;
         }
     }
@@ -97,7 +97,7 @@ public class MotorvognRepository {
             List<Motorvogn> enVogn = db.query(sql, new BeanPropertyRowMapper<>(Motorvogn.class), id);
             return enVogn.get(0);
         }catch (Exception e){
-            logger.error("Feil i hent en");
+            logger.error("Feil i hent en" +e);
             return null;
         }
 
