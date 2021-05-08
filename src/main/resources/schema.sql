@@ -17,7 +17,7 @@ CREATE TABLE Biler(
 
 CREATE TABLE Bruker (
     id INTEGER AUTO_INCREMENT NOT NULL,
-    brukernavn varchar(255) NOT NULL,
+    brukernavn varchar(255) NOT NULL UNIQUE,
     passord VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );

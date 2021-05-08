@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +18,29 @@ import java.util.Optional;
 public class MotorvognRepository {
 
     private Logger logger = LoggerFactory.getLogger(MotorvognRepository.class);
+
+    /*private String krypterPassord(String passord){
+        String kryptertPassord = BCrypt.hashpw(passord, BCrypt.gensalt(15));
+        return kryptertPassord;
+    }
+    private boolean sjekkPassord( String passord, String hashPassord){
+        boolean ok = BCrypt.checkpw(passord,hashPassord);
+        return ok;
+    }*/
+    BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(15);
+
+    public boolean sjekkPassord(String passord, String hashPassword) {
+
+        return bCrypt.matches(passord, hashPassword);
+    }
+
+    public String krypterPassord(String passord) {
+
+        return bCrypt.encode(passord);
+    }
+
+
+
 
     @Autowired
     private JdbcTemplate db;
@@ -32,10 +58,11 @@ public class MotorvognRepository {
 
     }
     public boolean lagreBruker(Bruker bruker){
+        String hash = krypterPassord(bruker.getPassord());
         String sql = "INSERT INTO Bruker (brukernavn, passord) VALUES (?,?)";
 
         try{
-            db.update(sql, bruker.getBrukernavn(),bruker.getPassord());
+            db.update(sql, bruker.getBrukernavn(),hash);
             return true;
         }catch (Exception e){
             logger.error("feil i lagre bruker" +e);
@@ -113,20 +140,23 @@ public class MotorvognRepository {
             return false;
         }
     }
+    @PostConstruct
+    private void init(){
+
+        lagreBruker(new Bruker(0,"Atif","AtifAtif88"));
+    }
 
     public boolean sjekkBrukerOgPassord(Bruker bruker){
-        Object[] param = new Object[]{bruker.getBrukernavn(), bruker.getPassord()};
-        String sql = "SELECT COUNT(*) FROM Bruker WHERE brukernavn=? AND passord=?";
+        //Object[] param = new Object[]{bruker.getBrukernavn(), bruker.getPassord()};
+        String sql = "SELECT * FROM Bruker WHERE brukernavn=? ";
         try{
-            int antall = db.queryForObject(sql,param,Integer.class);
-            if(antall >0){
-                return true;
-            }
-            return false;
+            Bruker dbBruker = db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Bruker.class), new Object[]{bruker.getBrukernavn()});
+            return sjekkPassord(bruker.getPassord(),dbBruker.getPassord());
 
         }catch(Exception e){
-            logger.error("Feill i sjekk brukernavn og passord" + e);
+            logger.error("Feil i sjekk brukernavn og passord" + e);
             return false;
         }
     }
+
 }
